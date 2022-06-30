@@ -1,0 +1,15 @@
+from django.db import models
+
+
+class Question(models.Model):
+    # varchar数据类型？
+    question_text = models.CharField(max_length=200)
+    # 这第一个参数 用于可读
+    pub_date = models.DateTimeField('date published')
+
+
+class Choice(models.Model):
+    # 绑定quesiton外键
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
