@@ -9,9 +9,9 @@ class Question(models.Model):
     # 这第一个参数 用于可读
     pub_date = models.DateTimeField('date published')
 
-
-    def was_published_rencently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+    def was_published_recently(self):
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
 
     def __str__(self):
